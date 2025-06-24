@@ -1,0 +1,12 @@
+# k8s/v1/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: product-service
+  namespace: product-v1
+spec:
+  selector:
+    app: product
+  ports:
+    - port: 80
+      targetPort: 8080
