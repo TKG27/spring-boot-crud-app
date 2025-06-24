@@ -1,0 +1,28 @@
+# k8s/v1.1/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-deployment
+  namespace: product-v1-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product
+  template:
+    metadata:
+      labels:
+        app: product
+    spec:
+      containers:
+        - name: product
+          image: tkg31/spring-boot-crud-app:v1.1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-service.product-v1-1.svc.cluster.local:3306/productdb
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: password
