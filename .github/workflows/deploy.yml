@@ -13,7 +13,7 @@ jobs:
 
     env:
       IMAGE_NAME: tkg31/spring-boot-crud-app
-      VERSION: ${{ github.ref_name }}
+      VERSION: ${{ github.ref_name == 'main' && 'v1.0.0' || github.ref_name }}
 
     steps:
     - name: Checkout Code
