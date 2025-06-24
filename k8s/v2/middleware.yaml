@@ -1,0 +1,10 @@
+# k8s/v2/middleware.yaml
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-v2
+  namespace: product-v2
+spec:
+  stripPrefix:
+    prefixes:
+      - /v2
