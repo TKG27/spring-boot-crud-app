@@ -50,6 +50,10 @@ jobs:
         git fetch origin main
         git checkout origin/main -- k8s/${VERSION%%.*}
 
+    - name: Create Namespace if not exists
+      run: |
+        kubectl create namespace product-${VERSION%%.*} --dry-run=client -o yaml | kubectl apply -f -
+
     - name: Deploy to EKS
       run: |
         kubectl apply -f k8s/${VERSION%%.*}/deployment.yaml
