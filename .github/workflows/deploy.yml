@@ -43,6 +43,11 @@ jobs:
         mkdir -p ~/.kube
         echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ~/.kube/config
 
+    - name: Fetch k8s YAMLs from main
+      run: |
+        git fetch origin main
+        git checkout origin/main -- k8s/${VERSION%%.*}
+
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f k8s/${VERSION%%.*}/deployment.yaml
