@@ -54,5 +54,4 @@ jobs:
       run: |
         kubectl apply -f k8s/${VERSION%%.*}/deployment.yaml
         kubectl apply -f k8s/${VERSION%%.*}/service.yaml
-        kubectl apply -f k8s/${VERSION%%.*}/ingressroute.yaml
-        kubectl apply -f k8s/${VERSION%%.*}/middleware.yaml
+        kubectl apply -f k8s/${VERSION%%.*}/ingress.yaml
